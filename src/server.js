@@ -1,5 +1,6 @@
 import http from "http";
-import WebSocket from "ws";
+// import WebSocket from "ws";
+import SocketIO from "socket.io";
 import express from "express";
 
 const app = express();
@@ -11,16 +12,24 @@ app.get("/", (_, res) => res.render("home")); // home.pug를 render 해주는 ro
 app.get("/*", (_, res) => res.redirect("/")); // home으로 리다이렉팅
 
 const handleListen = () => console.log(`Listening on http://localhost:3000`);
-// app.listen(3000, handleListen);
 
 // express는 ws를 지원하지 않기 때문에 새로운 function을 추가해야 한다.
-const server = http.createServer(app);
+const httpServer = http.createServer(app);
+// const wss = new WebSocket.Server({ httpServer }); // http 서버 위에 webSocket 서버 만들 수 있음
+const wsServer = SocketIO(httpServer);
 
-const wss = new WebSocket.Server({ server }); // http 서버 위에 webSocket 서버 만들 수 있음
+wsServer.on("connection", (socket) => {
+  socket.on("enter_room", (msg, done) => {
+    console.log(msg);
+    setTimeout(() => {
+      done("Hello from the backend"); // 프론트엔드 코드
+    }, 5000);
+  });
+});
 
-// fake database
+/*
+// using websocket
 const sockets = [];
-
 // wss.on은 이벤트가 발생할 때까지 기다린다.
 wss.on("connection", (socket) => {
   console.log("Connected to Browser!!");
@@ -41,5 +50,6 @@ wss.on("connection", (socket) => {
     }
   });
 });
+*/
 
-server.listen(3000, handleListen);
+httpServer.listen(3000, handleListen);

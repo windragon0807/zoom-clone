@@ -23,3 +23,5 @@
 ❗ nodemon에는 "exec"이라는 key 하나만 있는데, 이건 src/server.js에 대해 babel-node 명령문을 실행시킨다.
 
 - npm i ws
+
+- npm i socket.io
