@@ -25,3 +25,5 @@
 - npm i ws
 
 - npm i socket.io
+
+- npm i @socket.io/admin-ui
