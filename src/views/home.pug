@@ -10,6 +10,16 @@ html(lang="en")
         header
             h1 Noom
         main
-            video#myFace(autoplay, playsinline, width="400", height="400")
+            div#welcome
+                form
+                    input(type="text", placeholder="room name", required)
+                    button Enter room
+            div#call
+                div#myStream
+                    video#myFace(autoplay, playsinline, width="200", height="200")
+                    button#mute Mute
+                    button#camera Turn Camera Off
+                    select#cameras
+                    video#peersFace(autoplay, playsinline, width="200", height="200")
         script(src="socket.io/socket.io.js")
         script(src="/public/js/app.js")

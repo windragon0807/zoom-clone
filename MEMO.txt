@@ -18,7 +18,7 @@
 
 - npm i pug
 
-❗ nodemon은 우리의 프로젝트를 살펴보고 변경 사항이 있을 시 서버를 재시작해주는 프로그램이다.
+❗ nodemon은 우리의 프로젝트를 살펴보고 변경 사항이 있을 시 자동으로 서버를 재시작해주는 프로그램이다.
 
 ❗ nodemon에는 "exec"이라는 key 하나만 있는데, 이건 src/server.js에 대해 babel-node 명령문을 실행시킨다.
 
@@ -27,3 +27,5 @@
 - npm i socket.io
 
 - npm i @socket.io/admin-ui
+
+- npm i localtunnel
